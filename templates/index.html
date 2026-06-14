@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI-Powered ATS Resume Analyzer</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+    
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1> AI-Powered ATS Resume Analyzer</h1>
+
+<p class="hero-text">
+    Get instant ATS scores, identify skill gaps,
+    and receive personalized recommendations
+    to improve your resume.
+</p>
+<div class="stats">
+
+    <div class="stat-box">
+        <h2>20+</h2>
+        <p>Skills Checked</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>3</h2>
+        <p>Target Roles</p>
+    </div>
+
+</div>
+
+
+
+
+<form method="POST" enctype="multipart/form-data">
+    <label><b>Select Target Role</b></label>
+
+    <br><br>
+
+    <select name="role">    
+
+        <option value="ML Engineer">ML Engineer</option>
+
+        <option value="Data Analyst">Data Analyst</option>
+
+        <option value="Software Engineer">Software Engineer</option>
+
+    </select>
+
+    <br><br>
+<label class="upload-box">
+    <input type="file" name="resume" id="resume" required> 
+    <span id="upload-text">📄 Choose Your Resume (PDF)</span>
+</label>
+<br><br>
+
+<button type="submit" class="analyze-btn">
+    🚀 Analyze Resume
+</button>
+
+
+<div class="features">
+
+    <div class="feature-card">
+        📊 ATS Score Analysis
+    </div>
+
+    <div class="feature-card">
+        🎯 Role-Based Evaluation
+    </div>
+
+    <div class="feature-card">
+        💡 Skill Recommendations
+    </div>
+
+</div>
+
+</form>
+
+<br>
+
+<h3>{{ message }}</h3>
+
+</div>
+<script>
+
+document.getElementById("resume").addEventListener(
+    "change",
+    function(){
+
+        let fileName = this.files[0].name;
+
+        document.getElementById("upload-text").innerText =
+            "📄 " + fileName;
+    }
+);
+
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

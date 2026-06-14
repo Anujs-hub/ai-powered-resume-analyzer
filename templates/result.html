@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Analysis Result</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Resume Analysis Result</h1>
+<h2>Target Role</h2>
+
+<p>{{ role }}</p>
+<h2>ATS Score</h2>
+<div class="score">
+{{ score }}/100
+</div>
+
+<div class="progress-bar">
+{% if score >= 75 %}
+
+    <div class="progress-fill success-bar"
+         style="width: {{ score }}%;">
+    </div>
+
+{% elif score >= 50 %}
+
+    <div class="progress-fill warning-bar"
+         style="width: {{ score }}%;">
+    </div>
+
+{% else %}
+
+    <div class="progress-fill danger-bar"
+         style="width: {{ score }}%;">
+    </div>
+
+{% endif %}
+</div>
+<h2>Resume Verdict</h2>
+
+{% if score >= 80 %}
+<div class="verdict success">
+    Excellent Resume ✅
+</div>
+
+{% elif score >= 60 %}
+<div class="verdict warning">
+    Good Resume ⚠️
+</div>
+
+{% else %}
+<div class="verdict danger">
+    Needs Improvement ❌
+</div>
+
+{% endif %}
+
+<h2>Detected Skills</h2>
+
+<ul class="skills">
+
+{% for skill in skills %}
+<li>{{ skill }}</li>
+{% endfor %}
+
+</ul>
+<h2>Resume Sections Analysis</h2>
+
+<ul class="sections">
+
+{% for section, status in sections.items() %}
+
+<li>
+    {{ section }} :
+    {% if status %}
+        ✅ Present
+    {% else %}
+        ❌ Missing
+    {% endif %}
+</li>
+
+{% endfor %}
+
+</ul>
+
+<h2>Missing Skills</h2>
+
+<ul class="missing">
+
+{% for skill in missing %}
+<li>{{ skill }}</li>
+{% endfor %}
+
+</ul>
+<h2>Recommendations</h2>
+
+<ul class="recommendations">
+
+{% for recommendation in recommendations %}
+
+<li>{{ recommendation }}</li>
+
+{% endfor %}
+
+</ul>
+<h2>Resume Strengths</h2>
+
+<ul class="sections">
+{% for item in strengths %}
+<li>✅ {{ item }}</li>
+{% endfor %}
+</ul>
+
+<h2>Areas to Improve</h2>
+
+<ul class="sections">
+{% for item in weaknesses %}
+<li>⚠️ {{ item }}</li>
+{% endfor %}
+</ul>
+<h2>Resume Preview</h2>
+
+<div class="preview">
+<pre>{{ resume_preview }}</pre>
+</div>
+
+<br>
+
+<a href="/">
+<button>
+Analyze Another Resume
+</button>
+</a>
+
+</div>
+
+</body>
+
+</html>
