@@ -182,6 +182,7 @@ def home():
             text = extract_text(pdf_path)
             resume_preview = text[:500]
             sections = detect_sections(text)
+            os.remove(pdf_path)
 
 
             print("\n===== RESUME TEXT =====\n")
