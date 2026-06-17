@@ -1,42 +1,25 @@
-\# AI Powered Resume Analyzer
+# AI Powered Resume Analyzer
 
+A Flask-based web application that analyzes resumes and calculates ATS scores.
 
+## Features
 
-A Flask-based web application that analyzes resumes and provides AI-powered insights.
+- Resume PDF Upload
+- ATS Score Calculation
+- Skill Detection
+- Missing Skills Analysis
+- Resume Recommendations
 
+## Live Demo
 
+https://ai-powered-resume-analyzer-8ah7.onrender.com
 
-\## Features
+## Technologies Used
 
-\- Resume Upload
-
-\- Resume Analysis
-
-\- PDF Support
-
-\- User Friendly Interface
-
-
-
-\## Technologies Used
-
-\- Python
-
-\- Flask
-
-\- HTML
-
-\- CSS
-
-
-
-\## Run Locally
-
-
-
-pip install -r requirements.txt
-
-
-
-python app.py
-
+- Python
+- Flask
+- PDFPlumber
+- HTML
+- CSS
+- GitHub
+- Render
