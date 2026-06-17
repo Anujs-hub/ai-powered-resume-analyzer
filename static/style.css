@@ -10,7 +10,7 @@ body{
     padding: 0;   
 }
 .container{
-    width: 80%;
+    width: 90%;
     max-width: 900px;
 
     margin: 40px auto;
@@ -306,4 +306,36 @@ p{
 
 .danger-bar{
     background:#ef4444;
+}
+@media (max-width: 768px){
+
+    h1{
+        font-size: 28px;
+    }
+
+    p{
+        font-size: 16px;
+    }
+
+    .container{
+        width: 95%;
+        padding: 15px;
+    }
+
+    .upload-box{
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    select{
+        width: 100%;
+    }
+
+    .analyze-btn{
+        width: 100%;
+    }
+
+    .verdict{
+        width: 90%;
+    }
 }
