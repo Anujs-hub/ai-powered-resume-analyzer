@@ -47,6 +47,17 @@ https://ai-powered-resume-analyzer-8ah7.onrender.com
 - Resume PDF Download
 - User Login
 - More Job Roles
+---
+
+## Screenshots
+
+### Home Page
+
+![Home Page](images/home.png)
+
+### Resume Analysis Dashboard
+
+![Resume Analysis Dashboard](images/result.png)
 
 ---
 
