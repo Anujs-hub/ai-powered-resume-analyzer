@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Powered ATS Resume Analyzer</title>
-    <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
 
-    
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Analyzer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
 </head>
 
@@ -16,102 +29,326 @@
 
 <div class="container">
 
-<h1> AI-Powered ATS Resume Analyzer</h1>
+    <header class="page-header">
 
-<p class="hero-text">
-    Get instant ATS scores, identify skill gaps,
-    and receive personalized recommendations
-    to improve your resume.
-</p>
-<div class="stats">
+        <h1>AI Resume Analyzer</h1>
 
-    <div class="stat-box">
-        <h2>20+</h2>
-        <p>Skills Checked</p>
+        <p>
+
+            Improve your resume with ATS Score,
+            Skill Analysis and Job Description Matching.
+
+        </p>
+
+    </header>
+
+
+    <div class="home-card">
+
+        <form action="/analyze"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <div class="upload-area">
+
+                <label>
+
+                    Upload Resume (PDF)
+
+                </label>
+
+                <input type="file"
+                       name="resume"
+                       accept=".pdf"
+                       required>
+
+            </div>
+
+
+            <div class="role-box">
+
+                <label>
+
+                    Select Target Role
+
+                </label>
+
+                <select name="role"
+                        required>
+
+                    <option value="">
+                        Choose Role
+                    </option>
+
+                    <option>Software Engineer</option>
+
+                    <option>Frontend Developer</option>
+
+                    <option>Backend Developer</option>
+
+                    <option>Full Stack Developer</option>
+
+                    <option>Python Developer</option>
+
+                    <option>Data Analyst</option>
+
+                    <option>Data Scientist</option>
+
+                    <option>Machine Learning Engineer</option>
+
+                    <option>AI Engineer</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="role-box">
+
+                <label>
+
+                    Job Description (Optional)
+
+                </label>
+
+                <textarea
+                    name="job_description"
+                    placeholder="Paste Job Description here..."></textarea>
+
+            </div>
+
+
+            <div class="button-section">
+
+                <button class="analyze-btn"
+                        type="submit">
+
+                    Analyze Resume
+
+                </button>
+
+            </div>
+
+        </form>
+
     </div>
+        <section class="features">
 
-    <div class="stat-box">
-        <h2>3</h2>
-        <p>Target Roles</p>
-    </div>
+        <div class="feature-card">
+
+            <h3>ATS Score</h3>
+
+            <p>
+
+                Calculates an ATS score based on resume content,
+                formatting and important sections.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <h3>Skill Detection</h3>
+
+            <p>
+
+                Detects technical skills automatically and compares
+                them with your selected job role.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <h3>Resume vs JD</h3>
+
+            <p>
+
+                Matches your resume with the provided Job Description
+                and calculates the match percentage.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <h3>Suggestions</h3>
+
+            <p>
+
+                Gives personalized recommendations to improve your
+                resume for better interview chances.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="stats-section">
+
+        <div class="stat-card">
+
+            <h2>100+</h2>
+
+            <p>
+
+                ATS Checks
+
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h2>35+</h2>
+
+            <p>
+
+                Skills Supported
+
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h2>9</h2>
+
+            <p>
+
+                Job Roles
+
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h2>PDF</h2>
+
+            <p>
+
+                Resume Upload
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="about-section">
+
+        <div class="home-card">
+
+            <h2>
+
+                About This Project
+
+            </h2>
+
+            <br>
+
+            <p>
+
+                AI Resume Analyzer is a Flask-based web application
+                that analyzes resumes using ATS-based scoring,
+                technical skill detection, resume completeness,
+                keyword matching and Job Description comparison.
+                It helps students improve their resumes before
+                applying for internships and full-time jobs.
+
+            </p>
+
+        </div>
+
+    </section>
+        <section class="tips-section">
+
+        <div class="home-card">
+
+            <h2>
+
+                Resume Tips
+
+            </h2>
+
+            <br>
+
+            <ul>
+
+                <li>
+
+                    Keep your resume limited to one page.
+
+                </li>
+
+                <li>
+
+                    Mention your GitHub and LinkedIn profile.
+
+                </li>
+
+                <li>
+
+                    Add projects with measurable outcomes.
+
+                </li>
+
+                <li>
+
+                    Use keywords according to the Job Description.
+
+                </li>
+
+                <li>
+
+                    Include internships, certifications and achievements.
+
+                </li>
+
+                <li>
+
+                    Avoid unnecessary graphics to make your resume ATS friendly.
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <footer class="footer">
+
+        <p>
+
+            Developed by <strong>Anuj Singh</strong>
+
+        </p>
+
+        <p>
+
+            Flask • Python • HTML • CSS • PDFPlumber
+
+        </p>
+
+    </footer>
 
 </div>
-
-
-
-
-<form method="POST" enctype="multipart/form-data">
-    <label><b>Select Target Role</b></label>
-
-    <br><br>
-
-    <select name="role">    
-
-        <option value="ML Engineer">ML Engineer</option>
-
-        <option value="Data Analyst">Data Analyst</option>
-
-        <option value="Software Engineer">Software Engineer</option>
-
-    </select>
-
-    <br><br>
-<label class="upload-box">
-    <input type="file" name="resume" id="resume" required> 
-    <span id="upload-text">📄 Choose Your Resume (PDF)</span>
-</label>
-<br><br>
-
-<button type="submit" class="analyze-btn">
-    🚀 Analyze Resume
-</button>
-
-
-<div class="features">
-
-    <div class="feature-card">
-        📊 ATS Score Analysis
-    </div>
-
-    <div class="feature-card">
-        🎯 Role-Based Evaluation
-    </div>
-
-    <div class="feature-card">
-        💡 Skill Recommendations
-    </div>
-
-</div>
-
-</form>
-
-<br>
-
-<h3>{{ message }}</h3>
-
-</div>
-<script>
-
-document.getElementById("resume").addEventListener(
-    "change",
-    function(){
-
-        let fileName = this.files[0].name;
-
-        document.getElementById("upload-text").innerText =
-            "📄 " + fileName;
-    }
-);
-
-</script>
-
-
-
-
-
-
-
-
 
 </body>
+
 </html>

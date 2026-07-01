@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Analysis Result</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analysis</title>
 
     <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
 </head>
 
@@ -16,131 +29,608 @@
 
 <div class="container">
 
-<h1>Resume Analysis Result</h1>
-<h2>Target Role</h2>
+    <header class="page-header">
 
-<p>{{ role }}</p>
-<h2>ATS Score</h2>
-<div class="score">
-{{ score }}/100
-</div>
+        <h1>Resume Analysis Report</h1>
 
-<div class="progress-bar">
-{% if score >= 75 %}
+        <p>
 
-    <div class="progress-fill success-bar"
-         style="width: {{ score }}%;">
+            ATS Score, Skill Analysis and Resume Insights
+
+        </p>
+
+    </header>
+
+
+    <div class="top-grid">
+
+        <div class="card">
+
+            <h4>ATS Score</h4>
+
+            <h2>{{ score }}/100</h2>
+
+            <small>{{ rank }}</small>
+
+        </div>
+
+
+        <div class="card">
+
+            <h4>Target Role</h4>
+
+            <h2>{{ role }}</h2>
+
+            <small>Selected Role</small>
+
+        </div>
+
+
+        <div class="card">
+
+            <h4>Role Match</h4>
+
+            <h2>{{ match_percentage }}%</h2>
+
+            <small>{{ matched }}/{{ total_required }} Skills</small>
+
+        </div>
+
+
+        <div class="card">
+
+            <h4>JD Match</h4>
+
+            <h2>{{ resume_match }}%</h2>
+
+            <small>Job Description</small>
+
+        </div>
+
     </div>
 
-{% elif score >= 50 %}
 
-    <div class="progress-fill warning-bar"
-         style="width: {{ score }}%;">
+    <div class="progress-card">
+
+        <div class="progress-head">
+
+            <span>Overall ATS Score</span>
+
+            <span>{{ score }}%</span>
+
+        </div>
+
+        <div class="progress-bar">
+
+            {% if score >= 80 %}
+
+            <div class="progress-fill success-bar"
+                 style="width:{{ score }}%"></div>
+
+            {% elif score >= 60 %}
+
+            <div class="progress-fill warning-bar"
+                 style="width:{{ score }}%"></div>
+
+            {% else %}
+
+            <div class="progress-fill danger-bar"
+                 style="width:{{ score }}%"></div>
+
+            {% endif %}
+
+        </div>
+
     </div>
 
-{% else %}
 
-    <div class="progress-fill danger-bar"
-         style="width: {{ score }}%;">
+    {% if score >= 80 %}
+
+    <div class="verdict success">
+
+        Excellent Resume ⭐
+
     </div>
 
-{% endif %}
-</div>
-<h2>Resume Verdict</h2>
+    {% elif score >= 60 %}
 
-{% if score >= 80 %}
-<div class="verdict success">
-    Excellent Resume ✅
-</div>
+    <div class="verdict warning">
 
-{% elif score >= 60 %}
-<div class="verdict warning">
-    Good Resume ⚠️
-</div>
+        Good Resume 👍
 
-{% else %}
-<div class="verdict danger">
-    Needs Improvement ❌
-</div>
+    </div>
 
-{% endif %}
-
-<h2>Detected Skills</h2>
-
-<ul class="skills">
-
-{% for skill in skills %}
-<li>{{ skill }}</li>
-{% endfor %}
-
-</ul>
-<h2>Resume Sections Analysis</h2>
-
-<ul class="sections">
-
-{% for section, status in sections.items() %}
-
-<li>
-    {{ section }} :
-    {% if status %}
-        ✅ Present
     {% else %}
-        ❌ Missing
+
+    <div class="verdict danger">
+
+        Needs Improvement ⚠️
+
+    </div>
+
     {% endif %}
-</li>
 
-{% endfor %}
 
-</ul>
+    <section class="section">
 
-<h2>Missing Skills</h2>
+        <div class="section-header">
 
-<ul class="missing">
+            <h2>ATS Score Breakdown</h2>
 
-{% for skill in missing %}
-<li>{{ skill }}</li>
-{% endfor %}
+        </div>
 
-</ul>
-<h2>Recommendations</h2>
+        <div class="details-list">
 
-<ul class="recommendations">
+            <div class="details-item">
 
-{% for recommendation in recommendations %}
+                <span>Skills Score</span>
 
-<li>{{ recommendation }}</li>
+                <span>{{ skills_score }}/35</span>
 
-{% endfor %}
+            </div>
 
-</ul>
-<h2>Resume Strengths</h2>
+            <div class="details-item">
 
-<ul class="sections">
-{% for item in strengths %}
-<li>✅ {{ item }}</li>
-{% endfor %}
-</ul>
+                <span>Section Score</span>
 
-<h2>Areas to Improve</h2>
+                <span>{{ section_score }}/20</span>
 
-<ul class="sections">
-{% for item in weaknesses %}
-<li>⚠️ {{ item }}</li>
-{% endfor %}
-</ul>
-<h2>Resume Preview</h2>
+            </div>
 
-<div class="preview">
-<pre>{{ resume_preview }}</pre>
-</div>
+            <div class="details-item">
 
-<br>
+                <span>Formatting Score</span>
 
-<a href="/">
-<button>
-Analyze Another Resume
-</button>
-</a>
+                <span>{{ formatting_score }}/15</span>
+
+            </div>
+
+            <div class="details-item">
+
+                <span>Experience Score</span>
+
+                <span>{{ experience_score }}/10</span>
+
+            </div>
+
+            <div class="details-item">
+
+                <span>Achievement Score</span>
+
+                <span>{{ achievement_score }}/10</span>
+
+            </div>
+
+            <div class="details-item">
+
+                <span>Keyword Density</span>
+
+                <span>{{ density_score }}/10</span>
+
+            </div>
+
+            <div class="details-item">
+
+                <span>Resume Completeness</span>
+
+                <span>{{ completeness }}%</span>
+
+            </div>
+
+            <div class="details-item">
+
+                <span>ATS Friendly</span>
+
+                {% if ats_friendly %}
+
+                <span class="tag success-tag">
+
+                    Yes
+
+                </span>
+
+                {% else %}
+
+                <span class="tag danger-tag">
+
+                    No
+
+                </span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+        <section class="section">
+
+        <div class="section-header">
+
+            <h2>Detected Skills</h2>
+
+            <span>{{ skills|length }}</span>
+
+        </div>
+
+        {% if skills %}
+
+        <div class="skill-list">
+
+            {% for skill in skills %}
+
+            <div class="skill-chip">
+
+                {{ skill }}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <p class="empty-text">
+
+            No skills detected.
+
+        </p>
+
+        {% endif %}
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2>Missing Skills</h2>
+
+            <span>{{ missing|length }}</span>
+
+        </div>
+
+        {% if missing %}
+
+        <div class="skill-list">
+
+            {% for skill in missing %}
+
+            <div class="missing-chip">
+
+                {{ skill }}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="success-message">
+
+            Excellent! No important skills are missing.
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    {% if jd_skills %}
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2>Job Description Match</h2>
+
+            <span>{{ matched_jd|length }}/{{ jd_skills|length }}</span>
+
+        </div>
+
+        <div class="skill-list">
+
+            {% for skill in matched_jd %}
+
+            <div class="skill-chip">
+
+                {{ skill }}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2>Resume Sections</h2>
+
+        </div>
+
+        <div class="details-list">
+
+            {% for section,status in sections.items() %}
+
+            <div class="details-item">
+
+                <span>
+
+                    {{ section }}
+
+                </span>
+
+                {% if status %}
+
+                <span class="tag success-tag">
+
+                    Present
+
+                </span>
+
+                {% else %}
+
+                <span class="tag danger-tag">
+
+                    Missing
+
+                </span>
+
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+        <section class="section">
+
+        <div class="section-header">
+
+            <h2>Formatting Check</h2>
+
+        </div>
+
+        <div class="details-list">
+
+            {% for item,status in formatting.items() %}
+
+            <div class="details-item">
+
+                <span>
+
+                    {{ item }}
+
+                </span>
+
+                {% if status %}
+
+                <span class="tag success-tag">
+
+                    Found
+
+                </span>
+
+                {% else %}
+
+                <span class="tag danger-tag">
+
+                    Missing
+
+                </span>
+
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <div class="two-column">
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2>
+
+                    Resume Strengths
+
+                </h2>
+
+            </div>
+
+            {% if strengths %}
+
+            <ul class="strength-list">
+
+                {% for item in strengths %}
+
+                <li>
+
+                    ✅ {{ item }}
+
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+            {% else %}
+
+            <p class="empty-text">
+
+                No strengths found.
+
+            </p>
+
+            {% endif %}
+
+        </section>
+
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2>
+
+                    Areas to Improve
+
+                </h2>
+
+            </div>
+
+            {% if weaknesses %}
+
+            <ul class="weakness-list">
+
+                {% for item in weaknesses %}
+
+                <li>
+
+                    ⚠️ {{ item }}
+
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+            {% else %}
+
+            <div class="success-message">
+
+                Great! No major improvements required.
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+    </div>
+
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2>
+
+                AI Recommendations
+
+            </h2>
+
+        </div>
+
+        {% if recommendations %}
+
+        <div class="recommendation-list">
+
+            {% for item in recommendations %}
+
+            <div class="recommendation-card">
+
+                <div class="recommendation-icon">
+
+                    💡
+
+                </div>
+
+                <div class="recommendation-text">
+
+                    {{ item }}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="success-message">
+
+            Excellent! Your resume is already well optimized.
+
+        </div>
+
+        {% endif %}
+
+    </section>
+        <section class="section">
+
+        <div class="section-header">
+
+            <h2>
+
+                Resume Preview
+
+            </h2>
+
+        </div>
+
+        <div class="preview-box">
+
+            <pre>{{ resume_preview }}</pre>
+
+        </div>
+
+    </section>
+
+
+    <div class="button-section">
+
+        <a href="/">
+
+            <button class="analyze-btn">
+
+                Analyze Another Resume
+
+            </button>
+
+        </a>
+
+    </div>
+
+
+    <footer class="footer">
+
+        <p>
+
+            Developed by <strong>Anuj Singh</strong>
+
+        </p>
+
+        <p>
+
+            AI Resume Analyzer using Flask, Python, HTML, CSS and PDFPlumber
+
+        </p>
+
+    </footer>
 
 </div>
 
