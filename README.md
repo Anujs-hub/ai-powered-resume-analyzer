@@ -53,11 +53,11 @@ https://ai-powered-resume-analyzer-8ah7.onrender.com
 
 ### Home Page
 
-![Home Page](images/home.png)
+![Home Page](images/home.png.png)
 
 ### Resume Analysis Dashboard
 
-![Resume Analysis Dashboard](images/result.png)
+![Resume Analysis Dashboard](images/result.png.png)
 
 ---
 
