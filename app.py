@@ -59,7 +59,7 @@ skills_list = [
     # Programming
     "Python",
     "Java",
-    "C++",
+    "C++"
 
     # Web Development
     "HTML",
